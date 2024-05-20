@@ -1,0 +1,63 @@
+<html>
+    <head>
+        div
+        {
+            position:absolute;
+            width:1em;
+            display:inline-block;
+            color: black;
+            animation-name: example;
+            animation-duration: 2s;
+            text-shadow: none; 
+        }
+        
+        @keyframes example 
+        {
+            0%   {color: white;  text-shadow: -1px 1px 8px white;}
+            15%  {color: #5f5 ;  text-shadow: -1px 1px 8px #5f5 ;}
+            100% {color: black;  text-shadow: none;}
+        }
+
+
+</head>
+<body>
+    var textStrip = ['诶', '比', '西', '迪', '伊', '吉', '艾', '杰', '开', '哦', '屁', '提', '维'];
+
+var matrixcol = function()
+{
+    var top =  Math.floor(Math.random() * $(window).height() * 0.5);
+    var size = 10 + Math.floor(Math.random()*10);
+    var col =  Math.floor(Math.random() * $(window).width() - size);
+    var ms  =  500 + Math.floor(Math.random()*1500);
+
+            var timer;
+    var aap = function()
+    {
+        var randomNumber = Math.floor(Math.random()*textStrip.length);
+
+        var newelem = $("<div style='font-size:"+ size+ "px;top:"+top+"px; left:"+col+"px;animation-duration:"+ 2*ms + "ms'>" + textStrip[randomNumber] +  "</div>" );
+        $('body').append(newelem);
+        top+=size;
+        setTimeout( function() {newelem.remove();}, (1.6*ms)-(ms/40)); 
+        if (top>$(window).height()-size)
+        {
+            size = 10 + Math.floor(Math.random()*10);
+            top=0; Math.floor(Math.random() * $(window).height() * 0.5);
+            col =  Math.floor(Math.random() * $(window).width() -size);
+            ms = 500 + Math.floor(Math.random()*1500);
+                            clearInterval(timer);
+            timer = setInterval(aap, ms/40);
+        }
+    }
+    timer = setInterval(aap, ms/40);
+
+}
+
+
+$( document ).ready(function() {
+   var i;   
+   for (i = 0; i < 25; i++) {
+       matrixcol();
+}
+</body>
+</html>
