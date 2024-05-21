@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    #container
+     {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #rever
+    {
+        display: flex;
+        flex-direction: row-reverse;
+        /* align-items: center; */
+    }
+</style>
+</head>
+<body>
+
+    <script type="text/javascript">
+        var i = 0,j=0, q=0;
+        var image = ["dog.jpg", "cat.jpg","cow.jpg"];
+        function change()
+        {
+            i++;
+            if(i>=image.length)
+                i=0;
+            var animal = document.getElementById("dog");
+            animal.src = image[i];
+        }
+        function autoChange()
+        {
+            j ++;
+            if(j>=image.length)
+                j=0;
+            var animal = document.getElementById("dog2");
+            animal.src = image[j];
+        }
+
+        function clickAlert()
+        {
+            q+=100;
+            alert(q);
+        }
+        setInterval(autoChange, 1000)
+        
+    </script>
+    <div id="rever">
+    <img src="dog.jpg" id="dog" width =300 height="300" onclick="change()">
+    </div>
+
+    <!-- <button onclick="change();">바꾸기</button> -->
+    <div id="container">
+    <img src="dog.jpg" id="dog2" width=300 height="300" onclick="clickAlert()">
+    </div>  
+
+</body>
+</html>
