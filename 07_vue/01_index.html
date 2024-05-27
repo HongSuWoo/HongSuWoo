@@ -1,0 +1,43 @@
+<html>
+<Head>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</Head>
+
+<body>
+
+<!-- vue.js{{머스타칭 문법}} vue.js바인딩 문법이다.
+이를 다른 말로는 보간법이라고 한다.
+반응성(Reactivity) : vue 에서 데이터를 dom에 바인당하면 데이터 값이 변경할 때마다 dom이 자동으로 업데이트 된다.
+이는 vue가 데이터와 dom을 연결하는 메커니즘으로 이르를 통해 vue 인스턴스의 데이터를 html템플릿에 동적으로
+랜더링할 수 있다.
+
+반응성 볍ㄴ수  : vue.js에서 ref나 reactiv()와 같이 함수를 사용하여 반응성 변수를 생성할 수 있다.
+이러한 반응성 변수는 vue의 반응성 시스템에 의해 고ㅓㅏㄴ리되며, 변수 값이 변경될때마다
+연결된 html요소에서 자동으로 변경된다.
+데이터 바인딩 : vue에서 데이터와 dom을 연결하는 메커니즘으로 이를 통해 vue 인스턴스의 데이터를 html템플릿에
+동적으로 랜더링할 수 있다. {{}}Mustach 문법으로 둘러싼 부분은 vue의 데이터 바인딩을 
+사용하여 해당 데이터를 html에 표시하는것을 의미
+-->
+
+    <div id="app">{{message}}</div>
+    <!-- <div> {{messsage}}</div> -->
+    <script>
+        const { createApp, ref } = Vue;
+    
+        createApp({
+            setup() {
+                const message = ref("hello");
+    
+                return {
+                    message
+                };
+            }
+        }).mount("#app");
+    </script>
+    </body>
+    </html>
+</body>
+</html>
+
+</body>
+</html>
