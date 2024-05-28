@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="step01">
+        <div v-for="individual in person" :key="individual.id">
+            <h2>{{ individual.name }}</h2>
+            <p>{{ individual.introduction }}</p>
+            <img :src="individual.img" :alt="individual.name" width="200">
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+v
+        const app = createApp({
+            setup() {
+                // scholar 데이터를 data.js에서 import 하기
+                import { scholar } from './data.js';
+                return {
+                    person: scholar
+                }
+            }
+        });
+
+        app.mount("#step01");
+    </script>
+</body>
+</html>

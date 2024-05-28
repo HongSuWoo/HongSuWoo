@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./data.js"></script>
+    <style>
+div {
+  width : 50px;
+  height: 50px;
+  background-color: #07052b;
+  color: white;
+}
+
+#dotted {
+  border-style: dotted;
+
+}
+
+#red {
+  border-style: solid;
+  border-color: red;
+}
+
+#thick {
+  border-width: 6px;
+  border-style: solid;
+}
+    </style>
+</head>
+<body>
+
+<div id="step01">
+    <div class="section">Section 1</div>
+    <div class="section">Section 2</div>
+    <div class="section">Section 3</div>
+</div>
+
+<script>
+    const {createApp, ref, reactive} = Vue;
+       
+        createApp({
+            setup(){
+                const items =
+                
+                return {
+                    items
+                }
+            }
+        }).mount("#step01")
+
+
+</script>
+</body>
+</html>

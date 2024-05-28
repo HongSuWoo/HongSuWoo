@@ -19,6 +19,7 @@
     <div id="step01">
         <h5>다중 속성 바인딩</h5>
         <div v-bind="multiAttr">{{multiAttr.value}}</div>
+        <div v-bind:id="multiAttr.id" v-bind:class="multiAttr.class">{{multiAttr.value}}</div>
     </div>
 
     <br>
