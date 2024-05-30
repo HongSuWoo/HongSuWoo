@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index2 vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./data.js"></script>
+    <style>
+        .character {
+            border: 2px solid black;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .imgContainer {
+            display: flex;
+            justify-content: center;
+        }
+
+        .imgContainer img {
+            width: 50%;
+            height: 50%;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <div id="app">
+        <button @click="cmode()">아이고 버튼</button>
+        <header>
+            <h1>vue template 이벤트 적용</h1>
+            <div class="container">
+                <div v-for="item in jsonData" :key="item.id" class="character">
+                    <h5>이름 : {{item.name}}</h5>
+                    <p>{{item.introduction}}</p>
+
+                    <div class="imgContainer" v-if="count % 2 === 0">
+                        <img :src="item.img">
+                    </div>
+
+
+
+                    <div class="imgContainer" v-else>
+
+                        
+                        <img v-for="(ddd, index) in item.img" :key="index" :src="ddd">
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+
+
+
+
+
+    <script>
+        const { createApp, ref } = Vue;
+
+        const app = createApp({
+            setup() {
+                const jsonData = ref(scholar);
+                const count = ref(0);
+
+                const cmode = () => {
+                    count.value++;
+                    if (count.value % 2 === 0)
+                        jsonData.value = scholar;
+                    else
+                        jsonData.value = msaSkill;
+                }
+
+                return {
+                    jsonData,
+                    count,
+                    cmode
+                }
+            }
+        });
+
+        app.mount("#app");
+    </script>
+</body>
+
+</html>

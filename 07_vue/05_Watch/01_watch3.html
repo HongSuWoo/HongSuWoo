@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+
+
+<div id="step04">
+    <p>{{obj.sum}}</p> 
+        <button @click="obj.x++">{{obj.x}}</button>
+        <button @click="obj.y++">{{obj.y}}</button>
+</div>
+
+
+    <script>
+        const {createApp, watch, ref, reactive} = Vue;
+        createApp({
+            setup(){
+                const obj= reactive({
+                    x:0,
+                    y:0,
+                    sum:0
+                });
+
+                watch(obj,(result,second)=>{
+                    //result는  watch의 리턴을 받아 쓴다. 근대 const obj객체선언에서는 반환값이 없어서 그런가?
+
+                    obj.sum = obj.x + obj.y;
+                    console.log(obj.sum);
+                    // result = obj.x.value + obj.y.value;
+                    {deep : true}
+                }
+
+                );
+                return{
+                    obj
+                }
+
+            }
+
+        }).mount("#step04");
+
+
+
+
+    </script>
+</body>
+</html>

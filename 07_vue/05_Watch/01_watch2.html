@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=devce-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        watch
+        데이터의 변경을 감지하고 그에 따라 특정 동작을 수행하는 훅스이다.
+        watch는 vue 인스턴스가 생성되고 setup 함수 내부에서 사용된다.
+
+        [표현식]
+        watch(propertyName, callback(newValue, oldValue) =>{
+            1. propertyName : 변경을 감지할 속성
+            2. newValue : 현재 입력된 새로운 값
+            3. oldValue : 입력 이전의 값
+
+            변경 감지 시 수행할 동작
+        })
+     -->
+    <div id="step01">
+        <p>현재 값 : {{currentValue}}</p>
+        <p>이전 값 : {{previousValue}}</p>
+        <input v-model="currentValue" /> 
+    
+    </div>
+    
+    
+    <script>
+        const {createApp, watch, ref, reactive} = Vue;
+        
+        
+        createApp({
+            setup(){
+                const currentValue = ref("");
+                const previousValue = ref("");
+                
+                // 동기 함수 예제
+                watch(currentValue, async(newVal, oldVal) =>{
+                    // 외부 API 호출 
+                    // let test = fetch("https://api.sampleapis.com/wines/reds")
+                                    //  .then(response => response.json());
+                    // 아래의 값은 promise가 반환됨
+                    // console.log(test);
+                    /*
+                        Promise는 자바스크립트에서 비동기 작업을 관리하고 처리하기 위해 사용되는 객체입니다
+                        Promise는 resolve(성공시) reject(실패시) 메서드를 갖는다.
+                        만약 Promise 블록상위 스코프에서 await를 하지 않는다면 반환 값은 Promise가 된다.
+                    */  
+                    
+
+                    // let test = await fetch("https://api.sampleapis.com/wines/reds")
+                    //                 .then(response => response.json());
+                    // console.log(test);
+
+                    if(newVal !== previousValue.value){
+                        console.log(newVal);
+                        console.log(oldVal);
+                        console.log("Watch === 데이터 변경 후 로직 실행")
+                        if(newVal == "서울"){
+                            previousValue.value = "관악구";
+                        }
+                        else if(newVal == "부산"){
+                            previousValue.value = "중구";
+                        }
+                    }
+                });
+
+                return {
+                    currentValue,
+                    previousValue
+                }
+            }
+        }).mount("#step01");
+
+    </script>
+</body>
+</html>

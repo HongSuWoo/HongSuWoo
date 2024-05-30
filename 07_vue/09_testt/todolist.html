@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo list</title>
+    <style>
+        .chat-container {
+            width: 300px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .chat-messages {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .chat-message {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-message-text {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .chat-button {
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-messages" id="chat-messages">
+        </div>
+        <div>
+            <input type="text" class="chat-input" id="chat-input" placeholder="메시지를 입력하세요">
+            <button class="chat-button" onclick="sendMessage()">확인</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var messageInput = document.getElementById("chat-input");
+            var message = messageInput.value;
+            var chatMessages = document.getElementById("chat-messages");
+            var newMessage = document.createElement("div");
+            newMessage.classList.add("chat-message");
+
+            var messageText = document.createElement("p");
+            messageText.textContent = message;
+            messageText.classList.add("chat-message-text");
+            newMessage.appendChild(messageText);
+
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "X";
+            deleteButton.onclick = function() {
+                newMessage.remove();
+            };
+            newMessage.appendChild(deleteButton);
+
+            chatMessages.appendChild(newMessage);
+            messageInput.value = "";
+        }
+    </script>
+</body>
+</html>
