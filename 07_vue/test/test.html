@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="step01">
+        <input type="text" v-model="inputValue" ref="inputField">
+    </div>    
+
+
+    <script>
+        const { ref, createApp } = Vue;
+
+        createApp({
+            setup() {
+                const inputValue = ref(''); // 입력 필드의 값을 저장할 ref 변수를 선언합니다.
+                
+                const handleInput = () => {
+                    console.log('Input changed');
+                    if(inputValue.value === '100') // inputValue에 대한 값 비교
+                        alert('100');
+                };
+
+                return { inputValue, handleInput }; // inputValue와 handleInput을 반환합니다.
+            },
+            mounted() {
+                this.$refs.inputField.focus();
+            }
+        }).mount("#step01"); // 마운트합니다.
+    </script>
+</body>
+</html>
